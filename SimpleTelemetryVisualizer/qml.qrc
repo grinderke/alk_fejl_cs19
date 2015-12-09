@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainForm.qml</file>
+        <file>HistoryGraph.qml</file>
+        <file>dev.qml</file>
+        <file>pics/developers.jpg</file>
+    </qresource>
+</RCC>
