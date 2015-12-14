@@ -3,7 +3,7 @@
 #include "RobotState.h"
 #include <QQmlContext>
 #include "RobotStateHistory.h"
-
+#include <QVector>
 #include <QQuickItem>
 #include <QQmlProperty>
 #include <QQmlApplicationEngine>
@@ -13,6 +13,7 @@ MainWindowsEventHandling::MainWindowsEventHandling(
     : robot(robot), qmlContext(qmlContext), history(history)
 {
     QObject::connect(&history, SIGNAL(historyChanged()), this, SLOT(historyChanged()));
+    QObject::connect(&history, SIGNAL(historyChanged()), this, SLOT(lineChanged()));
 }
 
 void MainWindowsEventHandling::startCommand()
@@ -100,6 +101,28 @@ void MainWindowsEventHandling::historyChanged()
 
     // Jelzünk a QML controloknak, hogy újrarajzolhatják magukat, beállítottuk az új értékeket.
     emit historyContextUpdated();
+}
+
+void MainWindowsEventHandling::lineChanged()
+{
+    QVector<float> sensor = history.currentState->linesensor();
+    for(int i=0;i<16;i++)
+    {
+        //qDebug() << sensor[i];
+        if(sensor[i] > 2)
+        {
+            QObject *rect = rootObject->findChild<QObject*>("rect"+QString::number(i));
+            if (rect)
+                rect->setProperty("color", "red");
+        }
+        else
+        {
+            QObject *rect = rootObject->findChild<QObject*>("rect"+QString::number(i));
+            if (rect)
+                rect->setProperty("color", "white");
+        }
+
+    }
 }
 
 QQuickItem* MainWindowsEventHandling::FindItemByName(QList<QObject*> nodes, const QString& name)

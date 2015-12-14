@@ -3,6 +3,7 @@
 #define ROBOTSTATE_H
 #include <QDataStream>
 #include <QString>
+#include <QVector>
 
 /**
  * @brief A robot teljes állapotleírása le egy adott időpillanatban.
@@ -85,6 +86,31 @@ public:
     float light() const { return _light; }
     void setLight(float light) { _light = light; }
 
+    /** A vonalszenzor állapota. */
+    Q_PROPERTY(QVector<float> linesensor READ linesensor WRITE setLine MEMBER _linesensor NOTIFY lineChanged)
+    QVector<float> linesensor() const { return _linesensor; }
+    void setLine(QVector<float> linesensor) {_linesensor = linesensor; }
+
+    /** A vonalszenzor indexének állapota. */
+    Q_PROPERTY(int index READ index WRITE setIndex MEMBER _index)
+    int index() const { return _index; }
+    void setIndex(int index) {
+        _index = index;
+        QVector<float> line_sensor(16);
+        for(int i=0;i<16;i++)
+        {
+            if(i ==_index || i == _index + 1)
+            {
+                line_sensor[i] = (qrand()% ((3000 + 1) - 2000) + 2000)/1000.0F;
+            }
+            else
+            {
+                line_sensor[i] = (qrand()% (1000 + 1))/1000.0F;
+            }
+        }
+        setLine(line_sensor);
+    }
+
     /** Az aktuális állapot QStringként. */
     // In QML, it will be accessible as model.statusName
     Q_PROPERTY(QString statusName READ getStatusName NOTIFY statusChanged)
@@ -110,6 +136,7 @@ signals:
     void vChanged();
     void aChanged();
     void lightChanged();
+    void lineChanged();
 
 private:
     Status _status;
@@ -118,7 +145,8 @@ private:
     float _v;   /** Sebesség (m/s) */
     float _a;   /** Gyorsulás (m/s2) */
     qint8 _light;
-
+    int _index;
+    QVector<float> _linesensor;
     /** Az állapotok és szöveges verziójuk közti megfeleltetés.
      * A getStatusName() használja. */
     static std::map<int,QString> statusNames;

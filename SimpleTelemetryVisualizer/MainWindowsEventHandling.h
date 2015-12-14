@@ -59,6 +59,8 @@ public slots:
     */
     void historyChanged();
 
+    void lineChanged();
+
 signals:
     /** Jelzi, hogy változott a megjelenítés számára az adatmodell.
      * Ilyenkor az érintett QML elemek (a grafikon) újrarajzolják magukat.

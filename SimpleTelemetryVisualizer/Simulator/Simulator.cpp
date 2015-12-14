@@ -1,3 +1,5 @@
+#include <QTime>
+#include <QtGlobal>
 #include "Simulator.h"
 
 Simulator::Simulator(int port)
@@ -11,6 +13,8 @@ Simulator::Simulator(int port)
 
 void Simulator::start(float intervalSec)
 {
+    QTime now = QTime::currentTime();
+    qsrand(now.second());
     dt = intervalSec;
     state.setStatus(RobotState::Status::Default);
     state.setTimestamp(0);
@@ -18,6 +22,7 @@ void Simulator::start(float intervalSec)
     state.setV(0.0F);
     state.setA(0.0F);
     state.setLight(0);
+    state.setIndex(qrand() % 15);
     timer.start((long)(intervalSec*1000.0F));
 }
 
@@ -27,6 +32,7 @@ void Simulator::tick()
     state.setTimestamp(state.timestamp() + dt);
     state.setX(state.x() + state.v()*dt);
     state.setV(state.v() + state.a()*dt);
+    state.setIndex(qrand() % 15);
 
     if (state.v()<-15.0)
     {

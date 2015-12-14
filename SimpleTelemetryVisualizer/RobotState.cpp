@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QtGlobal>
 #include "RobotState.h"
 
 std::map<int,QString> RobotState::statusNames;
@@ -42,6 +43,8 @@ void RobotState::WriteTo(QDataStream& stream) const
     stream << _v;
     stream << _a;
     stream << _light;
+    stream << _index;
+    stream << _linesensor;
 }
 
 void RobotState::ReadFrom(QDataStream& stream)
@@ -54,6 +57,8 @@ void RobotState::ReadFrom(QDataStream& stream)
     stream >> _v;
     stream >> _a;
     stream >> _light;
+    stream >> _index;
+    stream >> _linesensor;
 }
 
 void RobotState::CopyFrom(const RobotState &other)
@@ -64,6 +69,8 @@ void RobotState::CopyFrom(const RobotState &other)
     _v = other._v;
     _a = other._a;
     _light = other._light;
+    _index = other._index;
+    _linesensor = other._linesensor;
 }
 
 QDataStream &operator<<(QDataStream& stream, const RobotState& state)

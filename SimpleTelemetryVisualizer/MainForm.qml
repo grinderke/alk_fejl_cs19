@@ -142,6 +142,7 @@ Item {
             spacing: 7
         Rectangle {
             id: line1
+            objectName: "rect0"
             border.color: "black"
             border.width: 1
             width: 20
@@ -149,6 +150,7 @@ Item {
         }
         Rectangle {
             id: line2
+            objectName: "rect1"
             border.color: "black"
             border.width: 1
             width: 20
@@ -156,6 +158,7 @@ Item {
         }
         Rectangle {
             id: line3
+            objectName: "rect2"
             border.color: "black"
             border.width: 1
             width: 20
@@ -163,6 +166,7 @@ Item {
         }
         Rectangle {
             id: line4
+            objectName: "rect3"
             border.color: "black"
             border.width: 1
             width: 20
@@ -170,6 +174,7 @@ Item {
         }
         Rectangle {
             id: line5
+            objectName: "rect4"
             border.color: "black"
             border.width: 1
             width: 20
@@ -177,6 +182,7 @@ Item {
         }
         Rectangle {
             id: line6
+            objectName: "rect5"
             border.color: "black"
             border.width: 1
             width: 20
@@ -184,6 +190,7 @@ Item {
         }
         Rectangle {
             id: line7
+            objectName: "rect6"
             border.color: "black"
             border.width: 1
             width: 20
@@ -191,6 +198,7 @@ Item {
         }
         Rectangle {
             id: line8
+            objectName: "rect7"
             border.color: "black"
             border.width: 1
             width: 20
@@ -198,6 +206,7 @@ Item {
         }
         Rectangle {
             id: line9
+            objectName: "rect8"
             border.color: "black"
             border.width: 1
             width: 20
@@ -205,6 +214,7 @@ Item {
         }
         Rectangle {
             id: line10
+            objectName: "rect9"
             border.color: "black"
             border.width: 1
             width: 20
@@ -212,6 +222,7 @@ Item {
         }
         Rectangle {
             id: line11
+            objectName: "rect10"
             border.color: "black"
             border.width: 1
             width: 20
@@ -219,6 +230,7 @@ Item {
         }
         Rectangle {
             id: line12
+            objectName: "rect11"
             border.color: "black"
             border.width: 1
             width: 20
@@ -226,6 +238,7 @@ Item {
         }
         Rectangle {
             id: line13
+            objectName: "rect12"
             border.color: "black"
             border.width: 1
             width: 20
@@ -233,6 +246,7 @@ Item {
         }
         Rectangle {
             id: line14
+            objectName: "rect13"
             border.color: "black"
             border.width: 1
             width: 20
@@ -240,6 +254,7 @@ Item {
         }
         Rectangle {
             id: line15
+            objectName: "rect14"
             border.color: "black"
             border.width: 1
             width: 20
@@ -247,6 +262,7 @@ Item {
         }
         Rectangle {
             id: line16
+            objectName: "rect15"
             border.color: "black"
             border.width: 1
             width: 20
