@@ -38,11 +38,9 @@ public:
      * @param rootObject    A QML gyökérelem.
      */
     void ConnectQmlSignals(QObject *rootObject);
+    QObject *rootObject;
 
 public slots:
-    /** A kapcsolódás nyomógomb eseménykezelője. */
-    void connectCommand();
-
     /** Az indítás nyomógomb eseménykezelője. */
     void startCommand();
 
@@ -66,12 +64,13 @@ signals:
      * Ilyenkor az érintett QML elemek (a grafikon) újrarajzolják magukat.
      */
     void historyContextUpdated();
+    void startSimulatorCpp();
 
 private:
 
     /** A használt robot proxy. */
     RobotProxy& robot;
-
+    /*************************************************************/
     /** \addtogroup Hivatkozások adatkötéshez
      *  @{
      */

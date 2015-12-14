@@ -16,10 +16,15 @@
  */
 class StvApplication : public QApplication
 {
+    Q_OBJECT
+
 public:
     /** Konstruktor. Alapvető példányosítások és signal bekötések. */
     StvApplication(int argc, char *argv[]);
     ~StvApplication() = default;
+
+private slots:
+    void startSimulator();
 
 private:
     Simulator simulator;

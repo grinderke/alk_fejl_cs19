@@ -28,16 +28,16 @@ void Simulator::tick()
     state.setX(state.x() + state.v()*dt);
     state.setV(state.v() + state.a()*dt);
 
-    if (state.v()<-10.0)
+    if (state.v()<-15.0)
     {
-        state.setV( -10.0F );
+        state.setV( -15.0F );
     }
-    if (state.v()>10.0)
+    if (state.v()>15.0)
     {
-        state.setV( 10.0F );
+        state.setV( 15.0F );
     }
 
-    state.setLight( state.v()==10.0F ? 1.0F : 0.0F );
+    state.setLight( state.v()>=10.0F ? 1.0F : 0.0F );
 
     // Magasabb szintű funkciók
     switch(state.status())

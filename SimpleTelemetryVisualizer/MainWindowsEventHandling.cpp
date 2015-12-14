@@ -1,9 +1,11 @@
 #include "MainWindowsEventHandling.h"
 #include "RobotProxy.h"
+#include "RobotState.h"
 #include <QQmlContext>
 #include "RobotStateHistory.h"
 
 #include <QQuickItem>
+#include <QQmlProperty>
 #include <QQmlApplicationEngine>
 
 MainWindowsEventHandling::MainWindowsEventHandling(
@@ -15,34 +17,75 @@ MainWindowsEventHandling::MainWindowsEventHandling(
 
 void MainWindowsEventHandling::startCommand()
 {
-    //simulator.start(1.0F);
-    //communication.connect(QStringLiteral("localhost"),3333);
-    /*******************************************************/
-    //auto mainForm = FindItemByName(rootObject,"MainForm");
+    emit startSimulatorCpp();
+    auto mainForm = FindItemByName(rootObject,"MainForm");
     // Metódus meghívása
-    /*QVariant returnedValue;
-    QVariant messageText = "Csatlakozás sikeres!";
+    QVariant returnedValue;
+    QVariant messageText = "Csatlakozás sikeres";
     QVariant color = "green";
     qDebug() << "selectColor QML függvény meghívása...";
     QMetaObject::invokeMethod(mainForm, "selectColor",
     Q_RETURN_ARG(QVariant, returnedValue),
         Q_ARG(QVariant, messageText),
-        Q_ARG(QVariant, color));*/
+        Q_ARG(QVariant, color));
+
 }
 
 void MainWindowsEventHandling::accelerateCommand()
 {
+    auto mainForm = FindItemByName(rootObject,"MainForm");
+    // Metódus meghívása
+    QVariant returnedValue;
+    QVariant messageText = "Gyorsítási parancs elküldve";
+    QVariant color = "yellow";
+    qDebug() << "selectColor QML függvény meghívása...";
+    QMetaObject::invokeMethod(mainForm, "selectColor",
+    Q_RETURN_ARG(QVariant, returnedValue),
+        Q_ARG(QVariant, messageText),
+        Q_ARG(QVariant, color));
+    QMetaObject::invokeMethod(mainForm, "getTextValue",
+    Q_RETURN_ARG(QVariant, returnedValue));
+    bool ok;
+    float Acc = returnedValue.toFloat(&ok);
+    if(ok)
+     {
+        robot.acceleration = Acc;
+    }
+    else
+     {
+        qDebug() << "A gyorsulás értéke nem szám!";
+    }
     robot.accelerate();
 }
 
 void MainWindowsEventHandling::stopCommand()
 {
     robot.stop();
+    auto mainForm = FindItemByName(rootObject,"MainForm");
+    // Metódus meghívása
+    QVariant returnedValue;
+    QVariant messageText = "Stop parancs elküldve";
+    QVariant color = "blue";
+    qDebug() << "selectColor QML függvény meghívása...";
+    QMetaObject::invokeMethod(mainForm, "selectColor",
+    Q_RETURN_ARG(QVariant, returnedValue),
+        Q_ARG(QVariant, messageText),
+        Q_ARG(QVariant, color));
 }
 
 void MainWindowsEventHandling::resetCommand()
 {
     robot.reset();
+    auto mainForm = FindItemByName(rootObject,"MainForm");
+    // Metódus meghívása
+    QVariant returnedValue;
+    QVariant messageText = "Reset parancs elküldve";
+    QVariant color = "red";
+    qDebug() << "selectColor QML függvény meghívása...";
+    QMetaObject::invokeMethod(mainForm, "selectColor",
+    Q_RETURN_ARG(QVariant, returnedValue),
+        Q_ARG(QVariant, messageText),
+        Q_ARG(QVariant, color));
 }
 
 void MainWindowsEventHandling::historyChanged()

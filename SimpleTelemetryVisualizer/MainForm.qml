@@ -7,21 +7,27 @@ Item {
     height: 500
     anchors.fill: parent
     objectName: "MainForm"
-
+    id: valami;
     // Signalok, melyek a kiadott parancsokat jelzik és a nyomógombok
     //  eseménykezelői aktiválják őket.
+    property int someNumber: 100
 
     signal startCommand;
     signal resetCommand;
     signal accelerateCommand;
     signal stopCommand;
 
-    function socketConnection(messageText, color)
+    function selectColor(messageText, color)
            {
-               selectedColor = color;
+               var selectedColor = color;
                eventLogModel.insert(0, { message: messageText, colorCode: color } );
                console.log("selectColor(" + messageText + ", " + color + ")");
            }
+
+    function getTextValue()
+    {
+        return accelerateTextField.text;
+    }
 
     // A parancs nyomógombok elemcsoportja
     GroupBox {
@@ -71,7 +77,8 @@ Item {
             TextField {
                 id: accelerateTextField
                 Layout.fillWidth: true
-                placeholderText: "Ide írd be a sebességet..."
+                placeholderText: "Ide írd be a gyorsulás értékét..."
+                //property string someNumber: accelerateTextField.text
                       }
             Button {
                 id: accelerateBtn
@@ -385,7 +392,7 @@ Item {
                     model: ListModel {
                         id: eventLogModel
                         ListElement {
-                            message: "Application initiated"
+                            message: "Az alkalmazás elindult"
                             colorCode: "grey"
                         }
                     }

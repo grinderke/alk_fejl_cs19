@@ -29,6 +29,7 @@ public:
     RobotProxy(RobotStateHistory& history, Communication& communication);
     ~RobotProxy() = default;
 
+    float acceleration;
     /**
      * @brief Reseteli a robotot.
      */
