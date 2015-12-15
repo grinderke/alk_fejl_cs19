@@ -39,6 +39,7 @@ public:
      */
     void ConnectQmlSignals(QObject *rootObject);
     QObject *rootObject;
+    int flag = 0;
 
 public slots:
     /** Az indítás nyomógomb eseménykezelője. */

@@ -18,17 +18,29 @@ MainWindowsEventHandling::MainWindowsEventHandling(
 
 void MainWindowsEventHandling::startCommand()
 {
-    emit startSimulatorCpp();
-    auto mainForm = FindItemByName(rootObject,"MainForm");
-    // Metódus meghívása
-    QVariant returnedValue;
-    QVariant messageText = "Csatlakozás sikeres";
-    QVariant color = "green";
-    qDebug() << "selectColor QML függvény meghívása...";
-    QMetaObject::invokeMethod(mainForm, "selectColor",
-    Q_RETURN_ARG(QVariant, returnedValue),
-        Q_ARG(QVariant, messageText),
-        Q_ARG(QVariant, color));
+    if(flag == 0)
+    {
+        emit startSimulatorCpp();
+        auto mainForm = FindItemByName(rootObject,"MainForm");
+        // Metódus meghívása
+        QVariant returnedValue;
+        QVariant messageText = "Csatlakozás sikeres";
+        QVariant color = "green";
+        qDebug() << "selectColor QML függvény meghívása...";
+        QMetaObject::invokeMethod(mainForm, "selectColor",
+        Q_RETURN_ARG(QVariant, returnedValue),
+            Q_ARG(QVariant, messageText),
+            Q_ARG(QVariant, color));
+
+        QObject *rect = rootObject->findChild<QObject*>("cntBtn");
+        if (rect)
+        {
+            //rect->setProperty("gradient", "");
+            rect->setProperty("color", "green");
+        }
+
+        flag = 1;
+    }
 
 }
 
@@ -120,7 +132,11 @@ void MainWindowsEventHandling::lineChanged()
             QObject *rect = rootObject->findChild<QObject*>("rect"+QString::number(i));
             if (rect)
                 rect->setProperty("color", "white");
+
         }
+        QObject *rect = rootObject->findChild<QObject*>("text"+QString::number(i));
+        if (rect)
+            rect->setProperty("text", QString::number(sensor[i])+"V");
 
     }
 }

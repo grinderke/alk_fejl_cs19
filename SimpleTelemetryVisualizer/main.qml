@@ -7,8 +7,8 @@ import QtQuick.Dialogs 1.2
 ApplicationWindow {
     title: qsTr("Szimulátor")
     id: root
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     visible: true
 
     // Signalok, melyeket a C++ oldalon fogunk C++ slotokhoz kötni

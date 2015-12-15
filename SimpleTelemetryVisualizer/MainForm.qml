@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.3
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Styles 1.3
 
 Item {
     width: 500
@@ -10,7 +11,6 @@ Item {
     id: valami;
     // Signalok, melyek a kiadott parancsokat jelzik és a nyomógombok
     //  eseménykezelői aktiválják őket.
-    property int someNumber: 100
 
     signal startCommand;
     signal resetCommand;
@@ -37,10 +37,10 @@ Item {
         anchors.left : parent.left
         anchors.top : parent.top
         width: 200
-
         // A nyomógombokat oszlopba rendezzük
         ColumnLayout {
             id: columnLayout1
+            spacing: 10
             // Az oszlop kitölti a szülőt, vagyis a commandsGB-t.
             anchors.fill: parent
 
@@ -49,21 +49,28 @@ Item {
             //  a signal látható innen, mivel a Button egyik ősében definiáltuk.)
             Button {
                 id: startBtn
+                objectName: "cntBtn"
                 anchors.left: parent.left
                 anchors.right: parent.right
                 text: qsTr("Indítás")
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 onClicked: startCommand()
-            }
-            Button {
-                id: unkBtn
-                anchors.left: parent.left
-                anchors.right: parent.right
-                text: qsTr("Unknown")
-                anchors.leftMargin: 0
-                anchors.rightMargin: 0
-                onClicked: unkCommand()
+                style: ButtonStyle {
+                        background: Rectangle {
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 4
+                            //color: "#0c0"
+                            gradient:
+                                Gradient {
+                                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+                            }
+                        }
+                    }
             }
             Button {
                 id: resetBtn
@@ -73,6 +80,19 @@ Item {
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 onClicked: resetCommand()
+                style: ButtonStyle {
+                        background: Rectangle {
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 4
+                            gradient: Gradient {
+                                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+                            }
+                        }
+                    }
             }
             TextField {
                 id: accelerateTextField
@@ -88,6 +108,19 @@ Item {
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 onClicked: accelerateCommand()
+                style: ButtonStyle {
+                        background: Rectangle {
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 4
+                            gradient: Gradient {
+                                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+                            }
+                        }
+                    }
             }
             Button {
                 id: stopBtn
@@ -97,6 +130,19 @@ Item {
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 onClicked: stopCommand()
+                style: ButtonStyle {
+                        background: Rectangle {
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#888"
+                            radius: 4
+                            gradient: Gradient {
+                                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
+                                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+                            }
+                        }
+                    }
             }
         }
     }
@@ -135,140 +181,239 @@ Item {
         id: sensorValuesGB
         title: "Vonalszenzor értékek"
         anchors.top: currentValuesGB.bottom
-        anchors.bottom: historyGraph.top
+        //anchors.bottom: historyGraph.top
         anchors.left: commandsGB.right
         anchors.right: parent.right
+        Layout.fillHeight: true
         Row{
             spacing: 7
-        Rectangle {
+        Column{
+            Rectangle {
             id: line1
             objectName: "rect0"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
+            width: 30
+            height: 40
         }
+            Text{
+            objectName: "text0"
+            font.pixelSize: 10
+            text: " ?"
+            }
+        }
+        Column{
         Rectangle {
             id: line2
             objectName: "rect1"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
+            width: 30
+            height: 40
         }
+        Text{
+            objectName: "text1"
+            font.pixelSize: 10
+            text: " ?"
+          }
+        }
+        Column{
         Rectangle {
             id: line3
             objectName: "rect2"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text2"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line4
             objectName: "rect3"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text3"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line5
             objectName: "rect4"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text4"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line6
             objectName: "rect5"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text5"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line7
             objectName: "rect6"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text6"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line8
             objectName: "rect7"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text7"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line9
             objectName: "rect8"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text8"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line10
             objectName: "rect9"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text9"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line11
             objectName: "rect10"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text10"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line12
             objectName: "rect11"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text11"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line13
             objectName: "rect12"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text12"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line14
             objectName: "rect13"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text13"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line15
             objectName: "rect14"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text14"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+        Column{
         Rectangle {
             id: line16
             objectName: "rect15"
             border.color: "black"
             border.width: 1
-            width: 20
-            height: 30
-        }
-        }
+            width: 30
+            height: 40
+        }Text{
+            objectName: "text15"
+            font.pixelSize: 10
+            text: " ?"
+              }
+            }
+    }
     }
 
     // Delegate: this is the appearance of a list item
@@ -295,7 +440,7 @@ Item {
         anchors.rightMargin: 0
         anchors.left: parent.left
         anchors.leftMargin: 0
-        anchors.bottom: baseGrid.top
+        //anchors.bottom: eventLog.top
         anchors.bottomMargin: 0
         // Felfelé a commandsGB és currentValuesGB GroupBoxok közül ahhoz igazodik, aminek lejjebb van az alja.
         //anchors.top: (commandsGB.bottom > currentValuesGB.bottom ? commandsGB.bottom : currentValuesGB.bottom )
@@ -380,8 +525,8 @@ Item {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 0
 
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                //Layout.fillHeight: true
+                //Layout.fillWidth: true
 
                 ListView {
                     id: eventLog
