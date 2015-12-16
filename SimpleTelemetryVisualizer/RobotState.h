@@ -30,9 +30,12 @@ public:
         Reset = 1,
         /** Stop parancs. Ez az állapot akkor is érvényes marad, ha megállt a robot. */
         Stopping = 2,
-        /** Gyorsítási parancs a robotnak. A gyorsítás mértékét a robot
-         * átveszi a RobotState::a tulajdonságból. */
-        Accelerate = 3
+        /** Gyorsítási parancs a robotnak. */
+        Accelerate = 3,
+        /** Hátrafelé gyorsítási parancs a robotnak. */
+        Reverse = 4,
+        /** Egyenletes sebességgel haladó állapota a robotnak. */
+        Constant = 5
     };
 
     /**

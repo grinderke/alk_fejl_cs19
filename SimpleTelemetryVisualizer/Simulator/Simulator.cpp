@@ -13,6 +13,7 @@ Simulator::Simulator(int port)
 
 void Simulator::start(float intervalSec)
 {
+    //Szimulátor indítás
     QTime now = QTime::currentTime();
     qsrand(now.second());
     dt = intervalSec;
@@ -49,10 +50,12 @@ void Simulator::tick()
     if (state.v()<-15.0)
     {
         state.setV( -15.0F );
+        state.setStatus(RobotState::Status::Constant);
     }
     if (state.v()>15.0)
     {
         state.setV( 15.0F );
+        state.setStatus(RobotState::Status::Constant);
     }
 
     state.setLight( state.v()>=10.0F ? 1.0F : 0.0F );
@@ -77,32 +80,36 @@ void Simulator::tick()
             qDebug() << "Simulator: Stop parancs, gyors lassítás";
             state.setA(-1.0F);
         }
-        else if (state.v() > 0.1F)
+        else if (state.v() > 0.2F)
         {
             qDebug() << "Simulator: Stop parancs, lassú lassítás";
-            state.setA(-0.05F);
+            state.setA(-0.2F);
         }
         else if (state.v() < -1.5F)
         {
             qDebug() << "Simulator: Stop parancs, gyorsítás előre";
             state.setA(1.0F);
         }
-        else if (state.v() < -0.1F)
+        else if (state.v() < -0.2F)
         {
             qDebug() << "Simulator: Stop parancs, lassú gyorsítás előre";
-            state.setA(0.05F);
+            state.setA(0.2F);
         }
         else
         {
             // Majdnem megállt
             qDebug() << "Simulator: Megállt.";
             state.setStatus(RobotState::Status::Default);
+            state.setV(0.0F);
             state.setA(0.0F);
         }
         break;
     case RobotState::Status::Accelerate:
-        // Megjegyzés: a gyorsulás kért értékét már a parancs fogadásakor beállítottuk
-        qDebug() << "HIBA: A szimulátor nem kerülhetne a Status::Accelerate állapotba.";
+        break;
+    case RobotState::Status::Reverse:
+        break;
+    case RobotState::Status::Constant:
+        state.setA(0.0F);
         break;
     default:
         Q_UNREACHABLE();
@@ -142,8 +149,12 @@ void Simulator::dataReady(QDataStream &inputStream)
         break;
     case RobotState::Status::Accelerate:
         qDebug() << "Simulator: Gyorsítási parancs.";
-        //state.setStatus(RobotState::Status::Default);
         state.setStatus(RobotState::Status::Accelerate);
+        state.setA(receivedState.a());
+        break;
+    case RobotState::Status::Reverse:
+        qDebug() << "Simulator: Gyorsítási parancs.";
+        state.setStatus(RobotState::Status::Reverse);
         state.setA(receivedState.a());
         break;
     default:

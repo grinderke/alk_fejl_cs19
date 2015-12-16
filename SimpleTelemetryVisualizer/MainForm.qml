@@ -533,9 +533,6 @@ Item {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 0
 
-                //Layout.fillHeight: true
-                //Layout.fillWidth: true
-
                 ListView {
                     id: eventLog
                     anchors.fill: parent

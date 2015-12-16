@@ -42,7 +42,7 @@ public:
     int flag = 0;
 
 public slots:
-    /** Az indítás nyomógomb eseménykezelője. */
+    /** Az indítás nyomógomb eseménykezelője. Elindítja a szimulátort, létrehozza a kapcsolatot.*/
     void startCommand();
 
     /** Gyorsulási parancsot küld a robotnak. A gyorsítási nyomógomb eseménykezelője. */

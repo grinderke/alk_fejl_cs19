@@ -31,8 +31,11 @@ void RobotProxy::reset()
 void RobotProxy::accelerate()
 {
     RobotState newState;
-    newState.setStatus(RobotState::Status::Accelerate);
     newState.setA(acceleration);
+    if(acceleration >0)
+        newState.setStatus(RobotState::Status::Accelerate);
+    else
+        newState.setStatus(RobotState::Status::Reverse);
     communication.send(newState);
     qDebug() << "Gyorsítási parancs elküldve.";
 }

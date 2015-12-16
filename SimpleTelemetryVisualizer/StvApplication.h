@@ -14,6 +14,7 @@
  *
  * A konstruktor elvégzi az alapvető példányosításokat és a signalok összekapcsolását.
  */
+
 class StvApplication : public QApplication
 {
     Q_OBJECT

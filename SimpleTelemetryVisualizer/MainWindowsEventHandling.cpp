@@ -22,7 +22,7 @@ void MainWindowsEventHandling::startCommand()
     {
         emit startSimulatorCpp();
         auto mainForm = FindItemByName(rootObject,"MainForm");
-        // Metódus meghívása
+        // selectColor metódus meghívása
         QVariant returnedValue;
         QVariant messageText = "Csatlakozás sikeres";
         QVariant color = "green";
@@ -49,7 +49,7 @@ void MainWindowsEventHandling::startCommand()
 void MainWindowsEventHandling::accelerateCommand()
 {
     auto mainForm = FindItemByName(rootObject,"MainForm");
-    // Metódus meghívása
+    // selectColor metódus meghívása
     QVariant returnedValue;
     QVariant messageText = "Gyorsítási parancs elküldve";
     QVariant color = "yellow";
@@ -77,7 +77,7 @@ void MainWindowsEventHandling::stopCommand()
 {
     robot.stop();
     auto mainForm = FindItemByName(rootObject,"MainForm");
-    // Metódus meghívása
+    // selectColor metódus meghívása
     QVariant returnedValue;
     QVariant messageText = "Stop parancs elküldve";
     QVariant color = "blue";
@@ -92,7 +92,7 @@ void MainWindowsEventHandling::resetCommand()
 {
     robot.reset();
     auto mainForm = FindItemByName(rootObject,"MainForm");
-    // Metódus meghívása
+    // selectColor metódus meghívása
     QVariant returnedValue;
     QVariant messageText = "Reset parancs elküldve";
     QVariant color = "red";
@@ -119,11 +119,12 @@ void MainWindowsEventHandling::historyChanged()
 
 void MainWindowsEventHandling::lineChanged()
 {
+    // Kiolvassuk a vonalszenzor értékét
     QVector<float> sensor = history.currentState->linesensor();
+    // Az egyes szenzor értékeket megjelenítjük a front-end-en
     for(int i=0;i<16;i++)
     {
-        //qDebug() << sensor[i];
-        if(sensor[i] > 2)
+        if(sensor[i] >= 2)
         {
             QObject *rect = rootObject->findChild<QObject*>("rect"+QString::number(i));
             if (rect)
