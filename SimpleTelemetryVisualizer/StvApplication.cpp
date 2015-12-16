@@ -4,8 +4,6 @@ StvApplication::StvApplication(int argc, char *argv[])
     : QApplication(argc, argv), simulator(3333), engine(), history(), communication(),
       robot(history, communication), handler(robot, *engine.rootContext(), history)
 {
-    //ide irom a slotokat meg a connectiont
-
     // Szimulálunk egy history változást, mert attól kezdve léteznek a QML oldalon
     //  a C++ oldalról származó változók. (Különben referencia hibákat kapnánk a QML oldalon
     //  egészen addig, amíg az első üzenet meg nem jönne a szimulátortól.

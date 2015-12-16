@@ -71,6 +71,7 @@ void Simulator::tick()
         state.setLight(0);
         break;
     case RobotState::Status::Stopping:
+         state.setStatus(RobotState::Status::Stopping);
         if (state.v() > 1.5F)
         {
             qDebug() << "Simulator: Stop parancs, gyors lassítás";
@@ -141,7 +142,8 @@ void Simulator::dataReady(QDataStream &inputStream)
         break;
     case RobotState::Status::Accelerate:
         qDebug() << "Simulator: Gyorsítási parancs.";
-        state.setStatus(RobotState::Status::Default);
+        //state.setStatus(RobotState::Status::Default);
+        state.setStatus(RobotState::Status::Accelerate);
         state.setA(receivedState.a());
         break;
     default:

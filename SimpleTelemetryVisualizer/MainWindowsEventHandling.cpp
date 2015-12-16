@@ -35,8 +35,10 @@ void MainWindowsEventHandling::startCommand()
         QObject *rect = rootObject->findChild<QObject*>("cntBtn");
         if (rect)
         {
-            //rect->setProperty("gradient", "");
-            rect->setProperty("color", "green");
+            rect->setProperty("gradcolor1", "#0c0");
+            rect->setProperty("gradcolor2", "#0e0");
+            rect->setProperty("gradcolor3", "#0a0");
+            rect->setProperty("gradcolor4", "#0c0");
         }
 
         flag = 1;

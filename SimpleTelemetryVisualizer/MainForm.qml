@@ -49,6 +49,10 @@ Item {
             //  a signal látható innen, mivel a Button egyik ősében definiáltuk.)
             Button {
                 id: startBtn
+                property string gradcolor1: "#ccc"
+                property string gradcolor2: "#eee"
+                property string gradcolor3: "#aaa"
+                property string gradcolor4: "#ccc"
                 objectName: "cntBtn"
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -66,8 +70,8 @@ Item {
                             //color: "#0c0"
                             gradient:
                                 Gradient {
-                                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
-                                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+                                GradientStop { position: 0 ; color: control.pressed ? startBtn.gradcolor1 : startBtn.gradcolor2 }
+                                GradientStop { position: 1 ; color: control.pressed ? startBtn.gradcolor3 : startBtn.gradcolor4 }
                             }
                         }
                     }
@@ -157,6 +161,7 @@ Item {
         anchors.rightMargin: 0
         anchors.left : commandsGB.right
         anchors.top : parent.top
+        anchors.bottom: sensorValuesGB.top
 
         // Oszlopba rendezett további elemek
         ColumnLayout {
@@ -181,11 +186,11 @@ Item {
         id: sensorValuesGB
         title: "Vonalszenzor értékek"
         anchors.top: currentValuesGB.bottom
-        //anchors.bottom: historyGraph.top
         anchors.left: commandsGB.right
         anchors.right: parent.right
-        Layout.fillHeight: true
-        Row{
+        anchors.bottom: graphGB.top
+
+        RowLayout{
             spacing: 7
         Column{
             Rectangle {
@@ -413,6 +418,9 @@ Item {
             text: " ?"
               }
             }
+        Item {
+            Layout.fillHeight: true
+           }
     }
     }
 

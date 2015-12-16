@@ -3,38 +3,28 @@ import QtQuick.Controls 1.3
 
 ApplicationWindow {
     id: root
-    width: 300; height: 300
-    title: "Fejlesztők"
+    title: "Csapattagok"
 
     Column{
     Image {
-        source: "pics/developers.jpg"
+        source: "pics/autlogo.png"
         x: 50
-        y: 20
          }
     Text {
-       // anchors.centerIn: parent
         text: qsTr("A csapattagok:")
         x: 50
-        y: 20
     }
     Text {
-       // anchors.centerIn: parent
         text: qsTr("Hably Alexandra")
         x: 50
-        y: 20
     }
     Text {
-       // anchors.centerIn: parent
         text: qsTr("Kardos Tamás")
         x: 50
-        y: 40
     }
     Text {
-       // anchors.centerIn: parent
         text: qsTr("Krcs Dávid")
         x: 50
-        y: 60
     }
     }
 }

@@ -27,12 +27,12 @@ ApplicationWindow {
             title: qsTr("&Fájl")
             // Az egyetlen menüpont
             MenuItem {
-                text: qsTr("&Fejlesztők")
+                text: qsTr("&Csapattagok")
                 onTriggered: {
                 var component = Qt.createComponent("dev.qml")
                 var window    = component.createObject(root)
-                window.height = 300
-                window.width = 300
+                window.height = 200
+                window.width = 400
                 window.show()
                 }
             }

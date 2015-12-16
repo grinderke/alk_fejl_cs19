@@ -40,5 +40,4 @@ HEADERS += \
     Communication/CommunicationSerialPort.h \
     StvApplication.h
 
-DISTFILES += \
-    pics/developers.jpg
+DISTFILES +=

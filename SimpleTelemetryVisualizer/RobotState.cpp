@@ -24,7 +24,7 @@ void RobotState::initStatusNames()
         statusNames[(int)Status::Accelerate] = QString("Gyorsítás");
         statusNames[(int)Status::Default] = QString("Alap");
         statusNames[(int)Status::Reset] = QString("Reset");
-        statusNames[(int)Status::Stopping] = QString("Megállás");
+        statusNames[(int)Status::Stopping] = QString("Megállítás");
     }
 }
 

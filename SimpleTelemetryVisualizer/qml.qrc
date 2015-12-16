@@ -4,6 +4,6 @@
         <file>MainForm.qml</file>
         <file>HistoryGraph.qml</file>
         <file>dev.qml</file>
-        <file>pics/developers.jpg</file>
+        <file>pics/autlogo.png</file>
     </qresource>
 </RCC>
