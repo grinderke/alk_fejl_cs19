@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\Application.o
+./debug\SocketClient.o
+./debug\SocketServer.o
+./debug\MainApp.o
+./debug\qrc_qml.o
+./debug\moc_Application.o
+./debug\moc_SocketClient.o
+./debug\moc_SocketServer.o
+./debug\moc_MainApp.o
+);
