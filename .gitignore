@@ -34,3 +34,4 @@ Makefile*
 *.qmlproject.user.*
 
 *.exe
+SimpleTelemetryVisualizer/MainForm.qml.orig
