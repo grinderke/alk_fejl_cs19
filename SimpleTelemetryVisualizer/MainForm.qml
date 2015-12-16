@@ -177,8 +177,13 @@ Item {
             Text { text: " Állapot: " + (currentState!=null ? currentState.statusName : "?") }
             Text { text: " Idő: " + (currentState!=null ? currentState.timestamp : "?") }
             Text { text: " X: " + (currentState!=null ? currentState.x.toFixed(3) : "?") }
-            Text { text: " V: " + (currentState!=null ? currentState.v.toFixed(3) : "?") }
-            Text { text: " A: " + (currentState!=null ? currentState.a.toFixed(3) : "?") }
+            Text {
+                text: " V: " + (currentState!=null ? currentState.v.toFixed(3) : "?")
+                color: "green"}
+            Text {
+                text: " A: " + (currentState!=null ? currentState.a.toFixed(3) : "?")
+                color: "red"
+            }
             Text { text: " Lámpa: " + (currentState!=null ? currentState.light.toString() : "?") }
         }
     }
