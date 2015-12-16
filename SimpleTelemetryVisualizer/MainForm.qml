@@ -63,7 +63,7 @@ Item {
                 style: ButtonStyle {
                         background: Rectangle {
                             implicitWidth: 100
-                            implicitHeight: 40
+                            implicitHeight: 30
                             border.width: control.activeFocus ? 2 : 1
                             border.color: "#888"
                             radius: 4
@@ -87,7 +87,7 @@ Item {
                 style: ButtonStyle {
                         background: Rectangle {
                             implicitWidth: 100
-                            implicitHeight: 40
+                            implicitHeight: 30
                             border.width: control.activeFocus ? 2 : 1
                             border.color: "#888"
                             radius: 4
@@ -115,7 +115,7 @@ Item {
                 style: ButtonStyle {
                         background: Rectangle {
                             implicitWidth: 100
-                            implicitHeight: 40
+                            implicitHeight: 30
                             border.width: control.activeFocus ? 2 : 1
                             border.color: "#888"
                             radius: 4
@@ -137,7 +137,7 @@ Item {
                 style: ButtonStyle {
                         background: Rectangle {
                             implicitWidth: 100
-                            implicitHeight: 40
+                            implicitHeight: 30
                             border.width: control.activeFocus ? 2 : 1
                             border.color: "#888"
                             radius: 4
@@ -175,10 +175,10 @@ Item {
             // A currentState-et a MainWindowsEventHandling::historyChanged metódus regisztrálja be, hogy
             //  látható legyen a QML oldalról is. (Hivatkozás a RobotStateHistory::currentState-re.)
             Text { text: " Állapot: " + (currentState!=null ? currentState.statusName : "?") }
-            Text { text: " Idő: " + (currentState!=null ? currentState.timestamp : "?") }
-            Text { text: " X: " + (currentState!=null ? currentState.x.toFixed(3) : "?") }
-            Text { text: " V: " + (currentState!=null ? currentState.v.toFixed(3) : "?") }
-            Text { text: " A: " + (currentState!=null ? currentState.a.toFixed(3) : "?") }
+            Text { text: " Idő: " + (currentState!=null ? currentState.timestamp + " s" : "?") }
+            Text { text: " X: " + (currentState!=null ? currentState.x.toFixed(3) + " m" : "?") }
+            Text { text: " V: " + (currentState!=null ? currentState.v.toFixed(3) + " m/s" : "?") }
+            Text { text: " A: " + (currentState!=null ? currentState.a.toFixed(3) + " m/s^2" : "?") }
             Text { text: " Lámpa: " + (currentState!=null ? currentState.light.toString() : "?") }
         }
     }
@@ -434,8 +434,8 @@ Item {
             // Itt a model az, ami a list egyik eleme. (Bármi is legyen majd az.)
             Text { text: model.statusName }
             Text { text: " X: " + model.x.toFixed(3) }
-            Text { text: " V: " + model.v.toFixed(3) }
-            Text { text: " A: " + model.a.toFixed(3) }
+            Text { text: " V: " + model.v.toFixed(3); color: "#6EDC6E" }
+            Text { text: " A: " + model.a.toFixed(3); color: "#DC6E6E" }
         }
     }
 
@@ -524,7 +524,7 @@ Item {
      }
     GroupBox
             {
-                title: "Event log"
+                title: "Event Log"
                 anchors.top: graphGB.bottom
                 anchors.right: parent.right
                 anchors.rightMargin: 0

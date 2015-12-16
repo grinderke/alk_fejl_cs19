@@ -33,7 +33,7 @@ void Simulator::tick()
     state.setTimestamp(state.timestamp() + dt);
     state.setX(state.x() + state.v()*dt);
     state.setV(state.v() + state.a()*dt);
-    if(state.v() > 0)
+    if(state.v() != 0.0F)
     {
         int newIndex = state.index() + (qrand() % 3) - 1;
         if (newIndex < 0)

@@ -16,7 +16,6 @@ SOURCES += main.cpp \
     Communication/CommunicationTcpSocketServer.cpp \
     Communication/CommunicationTcpSocketClient.cpp \
     Simulator/Simulator.cpp \
-    Communication/CommunicationSerialPort.cpp \
     StvApplication.cpp
 
 RESOURCES += qml.qrc
@@ -33,11 +32,10 @@ HEADERS += \
     RobotState.h \
     RobotStateHistory.h \
     Communication/Communication.h \
-    Communication/CommunicationTcpSocket.h \
     Communication/CommunicationTcpSocketServer.h \
     Communication/CommunicationTcpSocketClient.h \
     Simulator/Simulator.h \
-    Communication/CommunicationSerialPort.h \
-    StvApplication.h
+    StvApplication.h \
+    Communication/CommunicationTcpSocket.h
 
 DISTFILES +=

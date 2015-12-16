@@ -32,8 +32,10 @@ void RobotProxy::accelerate()
 {
     RobotState newState;
     newState.setA(acceleration);
-    if(acceleration >0)
+    if(acceleration > 0)
         newState.setStatus(RobotState::Status::Accelerate);
+    else if(acceleration == 0)
+        newState.setStatus(RobotState::Status::Default);
     else
         newState.setStatus(RobotState::Status::Reverse);
     communication.send(newState);

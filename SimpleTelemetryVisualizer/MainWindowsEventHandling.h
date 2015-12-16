@@ -38,8 +38,14 @@ public:
      * @param rootObject    A QML gyökérelem.
      */
     void ConnectQmlSignals(QObject *rootObject);
+    /**
+     * Ez a QML gyökérelem.
+     */
     QObject *rootObject;
-    int flag = 0;
+    /**
+     * Ez a jelzőváltozó beállítódik indításkor, így futáskor csak egyszer lehet az Indító gombot megnyomni.
+     */
+    bool flag = false;
 
 public slots:
     /** Az indítás nyomógomb eseménykezelője. Elindítja a szimulátort, létrehozza a kapcsolatot.*/
@@ -59,7 +65,10 @@ public slots:
      * kiváltja a historyContextUpdated() signalt.
     */
     void historyChanged();
-
+    /** Azt jelzi, hogy változtak a vonalkövető szenzorok által beolvasott értékek.
+     * Ekkor szintén új állapot érkezett a robottól. Frissíti a vonalszenzor értékeit, az
+     * aktuálisan kapott adatoknak megfelelően.
+    */
     void lineChanged();
 
 signals:
@@ -67,6 +76,8 @@ signals:
      * Ilyenkor az érintett QML elemek (a grafikon) újrarajzolják magukat.
      */
     void historyContextUpdated();
+    /** Jelzi, hogy elindult a szimulátor.
+     */
     void startSimulatorCpp();
 
 private:

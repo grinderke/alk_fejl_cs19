@@ -32,7 +32,7 @@ public:
         Stopping = 2,
         /** Gyorsítási parancs a robotnak. */
         Accelerate = 3,
-        /** Hátrafelé gyorsítási parancs a robotnak. */
+        /** Tolatási parancs a robotnak. */
         Reverse = 4,
         /** Egyenletes sebességgel haladó állapota a robotnak. */
         Constant = 5

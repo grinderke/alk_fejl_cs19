@@ -39,7 +39,7 @@ StvApplication::StvApplication(int argc, char *argv[])
     QObject::connect(&handler, SIGNAL(startSimulatorCpp()),
                      this, SLOT(startSimulator()));
 }
-//Szimulátor indítása és csatlakozás a szimulátorhoz.
+//Szimulátor indítása és kommunikáció felállítása.
 void StvApplication::startSimulator(){
     simulator.start(1.0F);
     communication.connect(QStringLiteral("localhost"),3333);

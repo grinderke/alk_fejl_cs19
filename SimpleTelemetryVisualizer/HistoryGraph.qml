@@ -24,6 +24,8 @@ Canvas {
         drawHorizontalLine(context, -5.0, "rgba(100,100,100,1)", 5.0)
         drawHorizontalLine(context, 10.0, "rgba(0,0,0,1)", 5.0)
         drawHorizontalLine(context, -10.0, "rgba(0,0,0,1)", 5.0)
+        drawHorizontalLine(context, 15.0, "rgba(100,100,100,1)", 5.0)
+        drawHorizontalLine(context, -15.0, "rgba(100,100,100,1)", 5.0)
 
         // Az adatsorok megrajzolása (a graphTimestamps értékét jelenleg nem használjuk).
         //  Ez is külön függvénybe került.

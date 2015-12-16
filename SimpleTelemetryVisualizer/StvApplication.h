@@ -25,6 +25,7 @@ public:
     ~StvApplication() = default;
 
 private slots:
+    /** Szimulátor indítása és kommunikáció felállítása */
     void startSimulator();
 
 private:
